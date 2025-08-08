@@ -1,0 +1,154 @@
+:root {
+  --bg-1: #0e2b22;
+  --bg-2: #0a1f18;
+  --ink: #e7f3eb;
+  --ink-dim: #cfe3d7;
+  --accent: #73d6a1;
+  --accent-2: #58c49b;
+  --muted: #9fb9ab;
+  --card: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: radial-gradient(1200px 600px at 20% 10%, var(--bg-1), var(--bg-2) 70%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.page {
+  max-width: 920px;
+  padding: 128px 24px 72px;
+  margin: 0 auto;
+}
+
+.site-header { margin-bottom: 28px; }
+
+.brand {
+  font-weight: 700;
+  font-size: clamp(28px, 2.4vw + 16px, 44px);
+  letter-spacing: 0.2px;
+  margin: 0 0 18px 0;
+}
+
+.brand .name { font-family: "Instrument Serif", Georgia, serif; font-weight: 700; }
+.brand .dot { margin: 0 10px; opacity: 0.65; }
+.brand .tagline { color: var(--accent); font-weight: 700; }
+.brand .cash { color: var(--accent-2); font-weight: 900; }
+
+.lede {
+  font-weight: 800;
+  font-size: clamp(18px, 1.2vw + 12px, 22px);
+  margin: 0 0 8px 0;
+}
+
+.aside { color: var(--muted); margin: 0 0 22px 0; }
+
+.statement { color: var(--ink-dim); font-size: 16.5px; line-height: 1.75; }
+.statement p { margin: 16px 0; }
+
+.script {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--ink);
+  font-size: clamp(22px, 1.4vw + 16px, 28px);
+  margin: 18px 0 8px;
+}
+
+.bold { color: var(--ink); font-weight: 800; }
+
+/* Underlines */
+.underline { color: var(--ink); text-underline-offset: 3px; }
+.underline.wavy { color: var(--ink); text-decoration: underline wavy var(--accent-2) 1.5px; }
+.underline.dotted { text-decoration: underline dotted var(--accent) 1.5px; }
+.underline.solid { text-decoration: underline solid var(--accent) 2px; }
+
+/* Tooltips */
+[data-tooltip] { position: relative; cursor: help; }
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease, transform 120ms ease;
+  z-index: 10;
+}
+[data-tooltip]::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px; height: 8px;
+  background: var(--bg-2);
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  transition: opacity 120ms ease;
+  z-index: 9;
+}
+[data-tooltip]:hover::after,
+[data-tooltip]:hover::before,
+[data-tooltip]:focus-visible::after,
+[data-tooltip]:focus-visible::before { opacity: 1; }
+
+.pretty {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 28px 0 16px;
+}
+
+.icon-links {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin: 12px 0 26px;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px;
+  border-radius: 10px;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: transform 120ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.icon-link:hover { transform: translateY(-1px); border-color: rgba(255,255,255,0.16); background: rgba(255,255,255,0.08); }
+.icon-link:active { transform: translateY(0); }
+
+.icon {
+  width: 20px; height: 20px; color: var(--accent);
+}
+
+.icon-link span { font-weight: 600; font-size: 14px; color: var(--ink); }
+
+.site-footer { color: var(--muted); font-size: 13px; }
+
+@media (max-width: 500px) {
+  .icon-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+} 
